@@ -40,6 +40,11 @@
     -fx-text-fill: #e8f3f0;
 }
 
+.nav-button:pressed, .secondary-button:pressed {
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
 .nav-icon {
     -fx-text-fill: #71869a;
     -fx-font-size: 17px;
@@ -78,6 +83,10 @@
     -fx-background-radius: 12px;
     -fx-border-color: #202b37;
     -fx-border-radius: 12px;
+}
+
+.card:hover {
+    -fx-border-color: #31504d;
 }
 
 .stat-value {
