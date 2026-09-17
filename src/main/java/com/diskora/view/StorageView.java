@@ -1,6 +1,7 @@
 package com.diskora.view;
 
 import com.diskora.model.DiskInfo;
+import com.diskora.util.AnimationUtils;
 import com.diskora.util.FormatUtils;
 import com.diskora.util.ViewUtils;
 import javafx.geometry.Insets;
@@ -18,6 +19,7 @@ public final class StorageView extends VBox {
 
     private final VBox diskList = new VBox(14);
     private final Label status = new Label("Aguardando leitura...");
+    private final Button refreshButton = new Button("↻  Atualizar");
 
     public StorageView(Runnable onRefresh) {
         getStyleClass().add("page");
@@ -30,9 +32,12 @@ public final class StorageView extends VBox {
         Label description = new Label("Veja capacidade, uso e detalhes técnicos dos volumes locais.");
         description.getStyleClass().add("page-description");
 
-        Button refreshButton = new Button("↻  Atualizar");
         refreshButton.getStyleClass().add("secondary-button");
-        refreshButton.setOnAction(event -> onRefresh.run());
+        AnimationUtils.installNavHover(refreshButton);
+        refreshButton.setOnAction(event -> {
+            AnimationUtils.playSpin(refreshButton);
+            onRefresh.run();
+        });
         HBox headerLine = new HBox(18, new VBox(8, eyebrow, title, description), refreshButton);
         headerLine.setAlignment(Pos.TOP_LEFT);
         HBox.setHgrow(headerLine.getChildren().get(0), Priority.ALWAYS);
@@ -54,6 +59,16 @@ public final class StorageView extends VBox {
             return;
         }
         disks.forEach(disk -> diskList.getChildren().add(diskCard(disk)));
+        AnimationUtils.playStaggered(diskList.getChildren());
+    }
+
+    public void showLoading() {
+        status.getStyleClass().remove("error-text");
+        status.setText("Atualizando unidades...");
+        diskList.getChildren().clear();
+        Label loading = new Label("Lendo informações locais...");
+        loading.getStyleClass().add("muted");
+        diskList.getChildren().add(loading);
     }
 
     public void showError(String message) {
@@ -66,6 +81,7 @@ public final class StorageView extends VBox {
         VBox card = new VBox(18);
         card.getStyleClass().add("card");
         card.setPadding(new Insets(22));
+        AnimationUtils.installHoverLift(card);
 
         Label driveBadge = new Label(disk.mountPoint());
         driveBadge.getStyleClass().add("drive-badge-large");
@@ -79,6 +95,7 @@ public final class StorageView extends VBox {
         ProgressBar usageBar = new ProgressBar(disk.usagePercent() / 100.0);
         usageBar.setMaxWidth(Double.MAX_VALUE);
         usageBar.getStyleClass().add("usage-bar");
+        AnimationUtils.animateProgress(usageBar, disk.usagePercent() / 100.0);
 
         Label usage = new Label(FormatUtils.bytes(disk.usedBytes()) + " usados de "
                 + FormatUtils.bytes(disk.totalBytes()));

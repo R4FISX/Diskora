@@ -2,6 +2,7 @@ package com.diskora.view;
 
 import com.diskora.model.DiskInfo;
 import com.diskora.model.SystemInfoSnapshot;
+import com.diskora.util.AnimationUtils;
 import com.diskora.util.FormatUtils;
 import com.diskora.util.ViewUtils;
 import javafx.geometry.Insets;
@@ -45,6 +46,7 @@ public final class DashboardView extends VBox {
         HBox.setHgrow(statCards.getChildren().get(0), Priority.ALWAYS);
         HBox.setHgrow(statCards.getChildren().get(1), Priority.ALWAYS);
         HBox.setHgrow(statCards.getChildren().get(2), Priority.ALWAYS);
+        statCards.getChildren().forEach(AnimationUtils::installHoverLift);
 
         VBox storageCard = card();
         Label storageTitle = new Label("Resumo do armazenamento");
@@ -53,6 +55,7 @@ public final class DashboardView extends VBox {
         storageHint.getStyleClass().add("muted");
         diskSummary.setPadding(new Insets(16, 0, 0, 0));
         storageCard.getChildren().addAll(storageTitle, storageHint, diskSummary);
+        AnimationUtils.installHoverLift(storageCard);
 
         VBox systemCard = card();
         Label systemTitle = new Label("Informações do sistema");
@@ -65,6 +68,7 @@ public final class DashboardView extends VBox {
         addSystemField(systemGrid, "PROCESSADOR", processorValue, 0, 1);
         addSystemField(systemGrid, "MEMÓRIA", memoryValue, 1, 1);
         systemCard.getChildren().addAll(systemTitle, systemGrid);
+        AnimationUtils.installHoverLift(systemCard);
 
         HBox lower = new HBox(14, storageCard, systemCard);
         HBox.setHgrow(storageCard, Priority.ALWAYS);
@@ -95,6 +99,21 @@ public final class DashboardView extends VBox {
             return;
         }
         disks.forEach(disk -> diskSummary.getChildren().add(diskRow(disk)));
+        AnimationUtils.playStaggered(diskSummary.getChildren());
+    }
+
+    public void showLoading() {
+        diskCountValue.setText("—");
+        totalStorageValue.setText("—");
+        usedStorageValue.setText("—");
+        systemValue.setText("Atualizando...");
+        computerValue.setText("Atualizando...");
+        processorValue.setText("Atualizando...");
+        memoryValue.setText("Atualizando...");
+        diskSummary.getChildren().clear();
+        Label loading = new Label("Lendo informações locais...");
+        loading.getStyleClass().add("muted");
+        diskSummary.getChildren().add(loading);
     }
 
     public void showError(String message) {
@@ -146,6 +165,7 @@ public final class DashboardView extends VBox {
         ProgressBar bar = new ProgressBar(disk.usagePercent() / 100.0);
         bar.setMaxWidth(Double.MAX_VALUE);
         bar.getStyleClass().add("usage-bar");
+        AnimationUtils.animateProgress(bar, disk.usagePercent() / 100.0);
         HBox.setHgrow(bar, Priority.ALWAYS);
         HBox top = new HBox(10, mount, name, bar, usage);
         top.setAlignment(Pos.CENTER_LEFT);

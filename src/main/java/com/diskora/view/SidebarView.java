@@ -1,5 +1,6 @@
 package com.diskora.view;
 
+import com.diskora.util.AnimationUtils;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -40,6 +41,7 @@ public final class SidebarView extends VBox {
 
         Label status = new Label("●  SOMENTE LEITURA");
         status.getStyleClass().add("sidebar-status");
+        AnimationUtils.playPulse(status);
         getChildren().add(status);
     }
 
@@ -59,6 +61,7 @@ public final class SidebarView extends VBox {
         button.setMaxWidth(Double.MAX_VALUE);
         button.setAlignment(Pos.CENTER_LEFT);
         button.getStyleClass().add("nav-button");
+        AnimationUtils.installNavHover(button);
         button.setOnAction(event -> onNavigation.accept(name));
 
         buttons.put(name, button);
