@@ -1,0 +1,174 @@
+* {
+    -fx-font-family: "Segoe UI", "Arial";
+}
+
+.app-shell {
+    -fx-background-color: #0d1117;
+}
+
+.sidebar {
+    -fx-background-color: #111821;
+    -fx-border-color: transparent #202a36 transparent transparent;
+    -fx-border-width: 0 1px 0 0;
+}
+
+.brand {
+    -fx-text-fill: #f1f5f9;
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+    -fx-letter-spacing: 2px;
+}
+
+.brand-subtitle, .card-label, .eyebrow {
+    -fx-text-fill: #738197;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 1.3px;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8px;
+    -fx-text-fill: #9ba8b8;
+    -fx-font-size: 13px;
+    -fx-padding: 11px 12px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover, .nav-button:selected {
+    -fx-background-color: #1c2b38;
+    -fx-text-fill: #e8f3f0;
+}
+
+.nav-icon {
+    -fx-text-fill: #71869a;
+    -fx-font-size: 17px;
+    -fx-min-width: 18px;
+    -fx-alignment: center;
+}
+
+.nav-button:hover .nav-icon, .nav-button:selected .nav-icon {
+    -fx-text-fill: #4fe0bd;
+}
+
+.sidebar-status {
+    -fx-text-fill: #4fe0bd;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-padding: 10px 8px 0 8px;
+}
+
+.page {
+    -fx-background-color: #0d1117;
+}
+
+.page-title {
+    -fx-text-fill: #edf2f7;
+    -fx-font-size: 30px;
+    -fx-font-weight: 700;
+}
+
+.page-description, .muted {
+    -fx-text-fill: #7f8c9d;
+    -fx-font-size: 13px;
+}
+
+.card {
+    -fx-background-color: #141c25;
+    -fx-background-radius: 12px;
+    -fx-border-color: #202b37;
+    -fx-border-radius: 12px;
+}
+
+.stat-value {
+    -fx-text-fill: #edf2f7;
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+}
+
+.section-title {
+    -fx-text-fill: #e8edf3;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+}
+
+.field-value, .row-title {
+    -fx-text-fill: #d5dee8;
+    -fx-font-size: 13px;
+}
+
+.row-title {
+    -fx-font-weight: 600;
+}
+
+.row-value {
+    -fx-text-fill: #53d9b8;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-min-width: 46px;
+    -fx-alignment: center-right;
+}
+
+.drive-badge, .drive-badge-large {
+    -fx-background-color: #1e3b3b;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #53d9b8;
+    -fx-font-weight: 800;
+    -fx-padding: 4px 7px;
+}
+
+.drive-badge-large {
+    -fx-font-size: 16px;
+    -fx-padding: 8px 10px;
+}
+
+.type-pill {
+    -fx-background-color: #26303d;
+    -fx-background-radius: 12px;
+    -fx-text-fill: #9dadbe;
+    -fx-font-size: 11px;
+    -fx-padding: 5px 10px;
+}
+
+.usage-bar {
+    -fx-accent: #4fe0bd;
+    -fx-background-color: #26313d;
+    -fx-background-radius: 3px;
+    -fx-pref-height: 7px;
+}
+
+.usage-bar > .track {
+    -fx-background-color: #26313d;
+    -fx-background-radius: 3px;
+}
+
+.usage-bar > .bar {
+    -fx-background-color: #4fe0bd;
+    -fx-background-radius: 3px;
+    -fx-padding: 3px;
+}
+
+.secondary-button {
+    -fx-background-color: #1a2732;
+    -fx-background-radius: 7px;
+    -fx-border-color: #2b3b48;
+    -fx-border-radius: 7px;
+    -fx-text-fill: #c5d3dd;
+    -fx-font-size: 12px;
+    -fx-padding: 10px 14px;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #223541;
+    -fx-border-color: #4fe0bd;
+}
+
+.error-text {
+    -fx-text-fill: #ff8f8f;
+}
+
+.placeholder-icon {
+    -fx-text-fill: #4fe0bd;
+    -fx-font-size: 34px;
+}
